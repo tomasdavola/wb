@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+
+
+{% block content %}
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="input-group-lg w-75 col-md-8 mx-auto mb-6">
+            <h1 class="text-black mb-4 ">Hacer un pedido:</h1>
+            <div class="mb-3">
+                {{ form.name.label(class="text-black float-start") }}
+                <span class="text-danger float-start">*</span>
+                <span>)</span>
+                {{ form.name(class="form-control button-addon2") }}
+
+            </div>
+            <div class="mb-3">
+                {{ form.email.label(class="text-black") }}
+                {{ form.email(class="form-control button-addon2") }}
+            </div>
+           <div class="mb-3">
+                {{ form.tel_num.label(class="text-black float-start") }}
+                <span class="text-danger float-start">*</span>
+                <span>)</span>
+                {{ form.tel_num(class="form-control button-addon2") }}
+            </div>
+            <div class="mb-3">
+                {{ form.address.label(class="text-black float-start") }}
+                <span class="text-danger float-start">*</span>
+                <span>)</span>
+                {{ form.address(class="form-control button-addon2") }}
+            </div>
+            <div class="mb-3">
+                {{ form.order.label(class="text-black float-start") }}
+                <span class="text-danger float-start">*</span>
+                <span>)</span>
+                {{ form.order(class="form-control button-addon2") }}
+            </div>
+            <div class="mb-3 es">
+                {{ form.file.label }}
+                {% if form.file.errors %}
+                    {{ form.file(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.file.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.file(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.mop.label(class="text-black float-start") }}
+                <span class="text-danger float-start">*</span>
+                <span>)</span>
+                {{ form.mop(class="form-select") }}
+            </div>
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+<!--Tooltips JS Script-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("body").tooltip({ selector: '[data-bs-toggle=tooltip]' });
+        });
+    </script>
+
+
+{% endblock content %}
+

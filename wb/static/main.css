@@ -1,0 +1,190 @@
+body {
+  background: #FFFFFF;
+  color: ##212529;
+  margin-top: 7rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+.tms:link, a.tms:visited, a.tms{
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+  font-size:5em;
+}
+img.launch-pictures {
+      box-sizing: border-box;
+      padding:10%;
+
+}
+/* Popup container */
+.discord-popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.discord-popup .discord-popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -50%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.discord-popup .discord-popuptext::after {
+  content: "";
+  position: absolute;
+  top: -25%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  transform: rotate(180deg);
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.discord-popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn .5s;
+  animation: fadeIn 0.5s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+
+
+.bg-steel {
+  background-color: #6B9AC4;
+  background-color: #3D735F;
+  height: 90px;
+  padding-top:0rem;
+ }
+
+.site-header .navbar-nav .nav-link {
+  color: #6B9AC4;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+  color: #6B9AC4;
+}
+
+.site-header .navbar-nav .nav-link.active {
+  font-weight: 500;
+}
+
+img.avatar {
+    border-radius: 50%;
+}
+div.avatar {
+    position: absolute;
+    right: 20px;
+    top: 9px;
+}
+div.playback {
+    color: #ffffff;
+    position: absolute;
+    right: 160px;
+    top: 12px;
+}
+div.playback a:link, div.playback a:visited {
+  color: white;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+img.playback {
+    color: #ffffff;
+    position: absolute;
+    right: 400px;
+    top: 12px;
+}
+
+
+.content-section {
+  background: #121212;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.article-title {
+  color: #444444;
+}
+
+a.article-title:hover {
+  color: #428bca;
+  text-decoration: none;
+}
+
+.article-content {
+  white-space: pre-line;
+}
+
+.article-img {
+  height: 65px;
+  width: 65px;
+  margin-right: 16px;
+}
+
+.article-metadata {
+  padding-bottom: 1px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #e3e3e3
+}
+
+.article-metadata a:hover {
+  color: #333;
+  text-decoration: none;
+}
+
+.article-svg {
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+.account-img {
+  height: 125px;
+  width: 125px;
+  margin-right: 20px;
+  margin-bottom: 16px;
+}
+
+.account-heading {
+  font-size: 2.5rem;
+}
+
+.play-btn {
+    display: none;
+}
+
+.play-btn-div:hover .play-btn{
+    display:block;
+}
+
+
+.overlay {
+    z-index:9;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+       <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!--    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css')  }}">-->
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Farmacia Rodriguez</title>
+</head>
+<body>
+    <h1 class="text-black mb-4 ms-4 me-4 ">Pedidos completados:</h1>
+    {% for order in orders.items %}
+        <div class="card ms-4 me-4 mb-1">
+            <div class="card-header">
+                <small class="text-black">Fecha del pedido: {{ order.date.strftime('%d %b %Y %H:%M') }},</small>
+                <small class="text-black">Pedido completado: {{ order.date_completed.strftime('%d %b %Y %H:%M') }}</small>
+            </div>
+            <div class="card-body">
+                <small class="text-black">Nombre: {{ order.name }}</small>
+                <small class="text-black d-flex float-end">Numero de telefono: {{ order.tel_num }}</small>
+                <br>
+                <small class="text-black">Numero de email: {{ order.email }}</small>
+                <small class="text-black d-flex float-end">Demicilio: {{ order.address }}</small>
+                <br>
+                <small class="text-black">Método de pago: {{ order.mop }}</small>
+                <p class="article-content text-black"><b>Pedido:</b></p>
+                                <a class="btn btn-danger d-flex float-end" href=" {{ url_for('main.cdelete', id=order.id) }}">Borrar</a>
+                <p class="article-content text-black">{{ order.order }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+<div class="mt-4 ms-4">
+    {% for page_num in orders.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if page_num %}
+                {% if orders.page == page_num %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('main.completados', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('main.completados', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+            ...
+        {% endif %}
+    {% endfor%}
+    {% if per_page != 99999 %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('main.completados', per_page=99999)}}">Ver todos</a>
+    {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('main.completados', per_page=10)}}">Ver 10</a>
+    {% endif %}
+</div>
+<div>
+    <button class="btn btn-primary ms-4 mt-4 mb-4" onClick="window.print()">Imprimir</button>
+    <a class="btn btn-danger ms-1 mt-4 mb-4" href=" {{ url_for('main.cdelete_all') }}">Borrar todos</a>
+</div>
+</body>
+</html>

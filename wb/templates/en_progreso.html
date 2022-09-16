@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 class="text-black mb-4 ms-4 me-4 ">Pedidos que estan en progreso: </h1>
+    {% for order in orders.items %}
+        <div class="card ms-4 me-4 mb-1">
+            <div class="card-header">
+                <small class="text-black">Fecha del pedido: {{ order.date.strftime('%d %b %Y %H:%M') }},</small><br>
+                <small class="text-black">Fecha marcada como en progreso: {{ order.date_i_p.strftime('%d %b %Y %H:%M') }}</small>
+            </div>
+            <div class="card-body">
+                <small class="text-black">Nombre: {{ order.name }}</small>
+                <small class="text-black d-flex float-end">Numero de telefono: {{ order.tel_num }}</small>
+                <br>
+                <small class="text-black">Numero de email: {{ order.email }}</small>
+                <small class="text-black d-flex float-end">Demicilio: {{ order.address }}</small>
+                <br>
+                <small class="text-black">Método de pago: {{ order.mop }}</small>
+                <p class="article-content text-black"><b>Pedido:</b></p>
+
+                <p class="article-content text-black">{{ order.order }}</p>
+                {% if order.file %}
+                    <a target="_blank" href={{url_for('static',filename=order.file)}}>Archivo</a>
+                {% endif %}
+                <br>
+                                               <a class="btn btn-danger d-flex float-end" href=" {{ url_for('main.epdelete', id=order.id) }}">Borrar</a>
+                                  <a class="btn btn-success mt-2" href=" {{ url_for('main.epcomplete', id=order.id) }}">Completar</a>
+            </div>
+        </div>
+    {% endfor %}
+
+<div class="mt-4 ms-4">
+    {% for page_num in orders.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+            {% if page_num %}
+                {% if orders.page == page_num %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('main.en_progresos', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('main.en_progresos', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+            ...
+        {% endif %}
+    {% endfor%}
+    {% if per_page != 99999 %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('main.en_progresos', per_page=99999)}}">Ver todos</a>
+    {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('main.en_progresos', per_page=10)}}">Ver 10</a>
+    {% endif %}
+</div>
+<div>
+    <a href={{url_for('main.ep_print')}} target=”_blank” class="btn btn-primary ms-4 mt-4 mb-4">Imprimir</a>
+        <a class="btn btn-success ms-1 mt-4 mb-4" href=" {{ url_for('main.epcomplete_all') }}">Completar todos</a>
+    <a class="btn btn-danger ms-1 mt-4 mb-4" href=" {{ url_for('main.epdelete_all') }}">Borrar todos</a>
+</div>
+{% endblock content %}
