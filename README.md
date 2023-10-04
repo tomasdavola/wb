@@ -1,1 +1,1 @@
-# Source code for https://farmaciarodriguez.co
+# Source code for http://farmaciarodriguez.co
